@@ -12999,7 +12999,10 @@ var SpinePlugin = new Class({
 
         if (spineTextures.has(key))
         {
-            atlas = spineTextures.get(key);
+            atlas = new Spine.TextureAtlas(atlasEntry.data, function ()
+            {
+                return spineTextures.get(key);
+            });
         }
         else
         {
@@ -13040,7 +13043,10 @@ var SpinePlugin = new Class({
 
         if (spineTextures.has(key))
         {
-            atlas = spineTextures.get(key);
+            atlas = new Spine.TextureAtlas(atlasEntry.data, function ()
+            {
+                return spineTextures.get(key);
+            });
         }
         else
         {
@@ -32910,7 +32916,9 @@ var SpineGameObject = new Class({
 
         get: function ()
         {
-            return this.skeleton.color.a;
+            if (this.skeleton) {
+                return this.skeleton.color.a;
+            }
         },
 
         set: function (value)
